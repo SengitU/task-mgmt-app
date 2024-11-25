@@ -1,6 +1,6 @@
 import type { Task } from "../hooks/useTasks";
 
-const serviceUrl = "http://localhost:3000/task";
+const serviceUrl = `${import.meta.env.VITE_SERVICE_URL}/task`;
 
 const generateSearchParams = (search?: Record<string, string>) => {
   const searchParams = new URLSearchParams();

@@ -34,6 +34,7 @@ const LoginForm = () => {
           setLoggedInUser(loggedInUser);
           location.replace("/home");
         } catch (err) {
+          console.log({ err });
           setSubmitting(false);
           setErrors({ email: "Wrong email - password combination" });
         }

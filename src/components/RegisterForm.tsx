@@ -39,6 +39,7 @@ const RegisterForm = () => (
         await register(values);
         location.replace("/ ");
       } catch (err) {
+        console.log({ err });
         setErrors({ email: "Email already registered" });
         setSubmitting(false);
       }

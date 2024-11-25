@@ -42,8 +42,9 @@ const TaskForm = ({
     ) => {
       try {
         await submitTaskAction.mutate(values);
-        onSubmitComplete && onSubmitComplete();
+        if (onSubmitComplete) onSubmitComplete();
       } catch (err) {
+        console.log({ err });
         setSubmitting(false);
       }
     },

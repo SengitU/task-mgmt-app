@@ -12,13 +12,10 @@ const SearchForm = ({
   const debouncedSearchTerm = useDebounce(searchTerm, 400);
 
   useEffect(() => {
-    if (debouncedSearchTerm || dueAt) {
-      console.log({ debouncedSearchTerm, dueAt });
-      onCriteriaChange({
-        ...(debouncedSearchTerm ? { searchTerm: debouncedSearchTerm } : {}),
-        ...(dueAt ? { dueAt } : {}),
-      });
-    }
+    onCriteriaChange({
+      ...(debouncedSearchTerm ? { searchTerm: debouncedSearchTerm } : {}),
+      ...(dueAt ? { dueAt } : {}),
+    });
   }, [debouncedSearchTerm, dueAt, onCriteriaChange]);
 
   return (

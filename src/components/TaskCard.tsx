@@ -1,3 +1,6 @@
+import { isPast } from "date-fns";
+import classNames from "classnames";
+
 import type { Task } from "../hooks/useTasks";
 import useSubmitTask from "../hooks/useSubmitTask";
 
@@ -14,11 +17,17 @@ const TaskCardStateless = ({
 }) => {
   const mutation = useSubmitTask(task.id);
   const isOpen = task.status === "OPEN";
+  const isDue = isOpen && isPast(new Date(task.dueAt));
   const ctaText = isOpen ? "Mark as complete" : "Reopen";
   return (
     <div
       onClick={cardClickHandler}
-      className="flex flex-col cursor-pointer h-[250px] w-[200px] md:w-[175px] sm:w-[175px] h-max p-2 bg-white mt-2 border border-gray-200 rounded-lg shadow space-around justify-between"
+      className={classNames(
+        `flex flex-col cursor-pointer min-h-[170px] h-[250px] w-[200px] md:w-[175px] sm:w-[175px] h-max p-2 bg-white mt-2 border border-gray-200 rounded-lg shadow space-around justify-between`,
+        {
+          "bg-yellow-100": isDue,
+        }
+      )}
     >
       <h2 className="text-xl font-bold tracking-tight text-gray-900 truncate">
         {task.title}

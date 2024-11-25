@@ -1,17 +1,31 @@
 import type { Task } from "../hooks/useTasks";
 import useSubmitTask from "../hooks/useSubmitTask";
 
-const TaskCard = ({ task }: { task: Task }) => {
+import ModalWrapper from "./ModalWrapper";
+import TaskForm from "./TaskForm";
+import { useState } from "react";
+
+const TaskCardStateless = ({
+  task,
+  cardClickHandler,
+}: {
+  task: Task;
+  cardClickHandler: () => void;
+}) => {
   const mutation = useSubmitTask(task.id);
   const isOpen = task.status === "OPEN";
   const ctaText = isOpen ? "Mark as complete" : "Reopen";
-
   return (
-    <div className="flex flex-col h-[250px] w-[200px] md:w-[175px] sm:w-[175px] h-max p-2 bg-white mt-2 border border-gray-200 rounded-lg shadow space-around justify-between">
+    <div
+      onClick={cardClickHandler}
+      className="flex flex-col cursor-pointer h-[250px] w-[200px] md:w-[175px] sm:w-[175px] h-max p-2 bg-white mt-2 border border-gray-200 rounded-lg shadow space-around justify-between"
+    >
       <h2 className="text-xl font-bold tracking-tight text-gray-900 truncate">
         {task.title}
       </h2>
-      <span className="font-normal text-gray-700 max-h-[150px] break-all overflow-hidden hover:overflow-auto">{task.description}</span>
+      <span className="font-normal text-gray-700 max-h-[150px] break-all overflow-hidden hover:overflow-auto">
+        {task.description}
+      </span>
       <p className="font-normal text-gray-700">
         Due at: {new Date(task.dueAt).toLocaleDateString()}
       </p>
@@ -21,7 +35,7 @@ const TaskCard = ({ task }: { task: Task }) => {
           if (isOpen) {
             mutation.mutate({ status: "CLOSED" });
           } else {
-            mutation.mutate({ status: "OPEN"})
+            mutation.mutate({ status: "OPEN" });
           }
           e.stopPropagation();
         }}
@@ -29,6 +43,29 @@ const TaskCard = ({ task }: { task: Task }) => {
         {ctaText}
       </button>
     </div>
+  );
+};
+
+const TaskCard = ({ task }: { task: Task }) => {
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  return (
+    <ModalWrapper
+      isOpen={isEditModalOpen}
+      title="Edit Task"
+      closeModalHandler={() => setIsEditModalOpen(false)}
+      displayElement={
+        <TaskCardStateless
+          cardClickHandler={() => setIsEditModalOpen(true)}
+          task={task}
+        />
+      }
+    >
+      <TaskForm
+        initialValues={task}
+        taskId={task.id}
+        onSubmitComplete={() => setIsEditModalOpen(false)}
+      />
+    </ModalWrapper>
   );
 };
 

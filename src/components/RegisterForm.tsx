@@ -30,7 +30,7 @@ const validator = (values: {
   return errors;
 };
 
-const LoginForm = () => (
+const RegisterForm = () => (
   <Formik
     initialValues={{ email: "", password: "", name: "" }}
     validate={validator}
@@ -87,4 +87,4 @@ const LoginForm = () => (
   </Formik>
 );
 
-export default LoginForm;
+export default RegisterForm;

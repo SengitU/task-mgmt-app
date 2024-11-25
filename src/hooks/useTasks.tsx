@@ -11,10 +11,10 @@ export type Task = {
   dueAt: string;
 };
 
-const useTasks = (user: LoggedInUser) => {
+const useTasks = (user: LoggedInUser, search?: Record<string, string>) => {
   const tasksQuery = useSuspenseQuery<Task[]>({
-    queryKey: ["tasks"],
-    queryFn: () => getAll(user.token),
+    queryKey: ["tasks", search],
+    queryFn: () => getAll(user.token, search),
     retry: 1,
   });
   return tasksQuery.data;

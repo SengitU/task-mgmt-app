@@ -6,6 +6,7 @@ export const Input = ({ field, form, ...props }: FieldProps) => {
   const isFieldInvalid = form.errors[field.name];
   const isError = isFieldTouched && isFieldInvalid;
   const isValid = isFieldTouched && !isFieldInvalid;
+  const isDate = (props as unknown as Record<string, string>).type === "date";
   return (
     <div>
       <label
@@ -17,6 +18,11 @@ export const Input = ({ field, form, ...props }: FieldProps) => {
       <input
         {...field}
         {...props}
+        value={
+          isDate && field.value
+            ? new Date(field.value).toISOString().split("T")[0]
+            : field.value
+        }
         className={classnames(
           "block w-full p-2.5 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:border-primary-600",
           {

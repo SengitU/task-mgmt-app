@@ -8,9 +8,9 @@ const TaskList = ({ tasks, title }: { tasks: Task[]; title: string }) => {
       <h3 className="mb-2 text-xl font-semi-bold leading-tight tracking-tight text-gray-900">
         {title}
       </h3>
-      <div className="flex flex-row w-full h-full flex-wrap overflow-y-auto max-h-[650px] md:max-h-[500px] sm:max-h-[300px] justify-around">
+      <div className="flex flex-row w-full h-full flex-wrap overflow-y-auto min-h-[500px] max-h-[500px] md:max-h-[650px] justify-around">
         {tasks.map((task) => (
-          <TaskCard task={task} />
+          <TaskCard key={task.id} task={task} />
         ))}
       </div>
     </div>

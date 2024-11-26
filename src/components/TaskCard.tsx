@@ -5,7 +5,7 @@ import type { Task } from "../hooks/useTasks";
 import useSubmitTask from "../hooks/useSubmitTask";
 
 import ModalWrapper from "./ModalWrapper";
-import TaskForm from "./TaskForm";
+import TaskForm from "./forms/TaskForm";
 import { useState } from "react";
 
 const TaskCardStateless = ({

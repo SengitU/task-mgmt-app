@@ -1,7 +1,7 @@
 import { Formik, Form, Field } from "formik";
 
-import { Input } from "./Input";
-import { register } from "../services/userService";
+import { Input } from "../Input";
+import { register } from "../../services/userService";
 
 const validator = (values: {
   email: string;

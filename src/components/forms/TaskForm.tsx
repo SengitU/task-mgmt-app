@@ -1,8 +1,8 @@
 import { Formik, Form, Field } from "formik";
 
-import { Input } from "./Input";
-import { Task } from "../hooks/useTasks";
-import useSubmitTask from "../hooks/useSubmitTask";
+import { Input } from "../Input";
+import { Task } from "../../hooks/useTasks";
+import useSubmitTask from "../../hooks/useSubmitTask";
 import { useCallback } from "react";
 
 type TaskFormInput = Pick<Task, "title" | "description" | "dueAt">;

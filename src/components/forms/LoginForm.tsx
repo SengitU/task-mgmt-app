@@ -1,8 +1,8 @@
 import { Formik, Form, Field } from "formik";
-import { Input } from "./Input";
+import { Input } from "../Input";
 
-import { login } from "../services/userService";
-import useUser from "../hooks/useLoggedInUser";
+import { login } from "../../services/userService";
+import useUser from "../../hooks/useLoggedInUser";
 
 const validator = (values: { email: string; password: string }) => {
   const errors = {} as { email: string; password: string };

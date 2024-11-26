@@ -5,7 +5,7 @@ import BasePage from "../components/BasePage";
 import TaskPanel from "../components/TaskPanel";
 import useUser from "../hooks/useLoggedInUser";
 import ModalWrapper from "../components/ModalWrapper";
-import TaskForm from "../components/TaskForm";
+import TaskForm from "../components/forms/TaskForm";
 
 const Home = () => {
   const navigate = useNavigate();

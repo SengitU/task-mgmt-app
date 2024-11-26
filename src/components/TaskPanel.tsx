@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 
 import type { LoggedInUser } from "../hooks/useLoggedInUser";
 import useTasks from "../hooks/useTasks";
-import SearchForm from "./SearchForm";
+import SearchForm from "./forms/SearchForm";
 import TaskList from "./TaskList";
 
 const TaskPanel = ({ user }: { user: LoggedInUser }) => {

@@ -34,7 +34,7 @@ const Home = () => {
             </button>
           }
         >
-          <TaskForm onSubmitComplete={() => {}} />
+          <TaskForm onSubmitComplete={() => setIsCreateModalOpen(false)} />
         </ModalWrapper>
 
         <Suspense fallback={<div>Loading</div>}>
